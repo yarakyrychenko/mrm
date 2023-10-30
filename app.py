@@ -1,5 +1,7 @@
 import pandas as pd, streamlit as st
 
+st.set_page_config(layout="wide")
+
 data = pd.read_csv("MRM – Database of Measures.csv").fillna("Unknown")
 
 data.columns = ["MeasureName", "MeasureAbbreviation", "CoderName", "Timestamp", "Reference", "MeasureDetails","Year","LinkPaper", "LinkMeasure",
@@ -89,10 +91,15 @@ if st.session_state.changed:
         st.markdown("There are no measures matching your selection criteria.")
     else:
         st.markdown(f"There are {len(df.MeasureName)} measures matching your selection criteria.")
-        i = 0
-        for MeasureName in pd.unique(df.MeasureName):
-            i += 1
-            st.markdown(f"{i}. ({str(df[df.MeasureName==MeasureName].Year.iloc[0])}) {df[df.MeasureName==MeasureName].MeasureName.iloc[0]}. Link to Paper: {df[df.MeasureName==MeasureName].LinkPaper.iloc[0]}. Link to Measure: {df[df.MeasureName==MeasureName].LinkMeasure.iloc[0]}") 
-
+        #i = 0
+        #for MeasureName in pd.unique(df.MeasureName):
+        #    i += 1
+        #    st.markdown(f"{i}. ({str(df[df.MeasureName==MeasureName].Year.iloc[0])}) {df[df.MeasureName==MeasureName].MeasureName.iloc[0]}. Link to Paper: {df[df.MeasureName==MeasureName].LinkPaper.iloc[0]}. Link to Measure: {df[df.MeasureName==MeasureName].LinkMeasure.iloc[0]}") 
+        st.dataframe(df[["MeasureName", "MeasureAbbreviation",  "MeasureDetails", "Reference", "Year",  "LinkPaper", "LinkMeasure",
+                         "Online", "LongTermMalleability",
+                "ShortTermMalleability", "Skill","AttitudesNormsBeliefs", "Knowledge", "BehavioralCorrelate","IdentityRiskFactor","StimuliType",
+                "StimuliOrigin","StimuliSource", "StimuliCharacteristics", "StimuliPlatform", "ResponseOption", "ComponentType", "BehaviorType", "RiskType"]
+                         ])
+           
     st.session_state.last_filters = st.session_state.filters
     st.session_state.df = df.reset_index(inplace=False)
