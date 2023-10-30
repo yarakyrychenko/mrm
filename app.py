@@ -63,7 +63,7 @@ def get_filtered_data(data, filtervars, vars = ["Year", "Population", "Language"
     return newdata
 
 with st.form("my_form"):
-    st.markdown("Filter by:")
+    st.markdown("### Filter by:")
     
     st.multiselect("Langauge", language, default=["All"], key="LANGUAGE")
     st.multiselect("Country of study", countries, default=["All"], key="COUNTRY")
