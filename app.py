@@ -42,7 +42,6 @@ specific.insert(0, "All")
 st.markdown("<h1 style='text-align: center;'> Misinformation Resilience Metrics </h1>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center;'> find the measure that fits best </h3>", unsafe_allow_html=True)
 
-
 def get_filtered_data(data, filtervars, vars = ["Year", "Population", "Language", "LengthItems",
                                                 "Validated" , "Objective", "Specific"]):
     newdata = data.copy()
@@ -89,7 +88,7 @@ if st.session_state.changed:
         i = 0
         for MeasureName in pd.unique(df.MeasureName):
             i += 1
-            print(f"{i}. {df[df.MeasureName==MeasureName].Year}. {df[df.MeasureName==MeasureName].MeasureName}. Link to Paper: {df[df.MeasureName==MeasureName].LinkPaper}. Link to Measure: {df[df.MeasureName==MeasureName].LinkMeasure}") 
+            st.markdown(f"{i}. {df[df.MeasureName==MeasureName].Year}. {df[df.MeasureName==MeasureName].MeasureName}. Link to Paper: {df[df.MeasureName==MeasureName].LinkPaper}. Link to Measure: {df[df.MeasureName==MeasureName].LinkMeasure}") 
 
     st.session_state.last_filters = st.session_state.filters
     st.session_state.df = df.reset_index(inplace=False)
