@@ -11,7 +11,7 @@ data.columns = ["MeasureName", "MeasureAbbreviation", "CoderName", "Timestamp", 
 data.drop(columns=["X"], inplace=True)
 
 data.Population = data.Population.str.upper()
-data.Population = data.Population.str.apply(lambda x: "Multiple" if len(x.split(" ")) > 1 else x)
+data.Population = data.Population.apply(lambda x: "Multiple" if len(x.split(" ")) > 1 else x)
 countries = list(data.Population.unique())
 countries.sort(reverse=True)
 countries.insert(0, "All")
@@ -25,7 +25,7 @@ lengthitems.sort(reverse=True)
 lengthitems.insert(0, "All")
 
 data.Language = data.Language.str.upper()
-data.Language = data.Language.str.apply(lambda x: "Multilingual" if len(x.split(" ")) > 1 else x)
+data.Language = data.Language.apply(lambda x: "Multilingual" if len(x.split(" ")) > 1 else x)
 language = list(data.Language.unique())
 language.sort(reverse=True)
 language.insert(0, "All")
