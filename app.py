@@ -49,7 +49,7 @@ specific.insert(0, "All")
 st.markdown("<h1 style='text-align: center;'> Misinformation Resilience Metrics </h1>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center;'> find the measure that fits best </h3>", unsafe_allow_html=True)
 
-def get_filtered_data(data, filtervars, vars = ["Year", "Population", "Language", "Online",
+def get_filtered_data(data, filtervars, vars = ["Language","Population", "Year", "Online",
                                                 "Validated" , "Objective", "Specific"]):
     newdata = data.copy()
     for i in range(len(vars)):
