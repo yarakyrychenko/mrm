@@ -23,9 +23,9 @@ years = list(data.Year.unique())
 years.sort(reverse=True)
 years.insert(0, "All")
 
-lengthitems = list(data.LengthItems.unique())
-lengthitems.sort(reverse=True)
-lengthitems.insert(0, "All")
+online = list(data.Online.unique())
+online.sort(reverse=True)
+online.insert(0, "All")
 
 data.Language = data.Language.str.upper()
 data.Language = data.Language.apply(lambda x: "Multilingual" if len(x.split(" ")) > 1 else x)
@@ -49,7 +49,7 @@ specific.insert(0, "All")
 st.markdown("<h1 style='text-align: center;'> Misinformation Resilience Metrics </h1>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center;'> find the measure that fits best </h3>", unsafe_allow_html=True)
 
-def get_filtered_data(data, filtervars, vars = ["Year", "Population", "Language", "LengthItems",
+def get_filtered_data(data, filtervars, vars = ["Year", "Population", "Language", "Online",
                                                 "Validated" , "Objective", "Specific"]):
     newdata = data.copy()
     for i in range(len(vars)):
@@ -65,10 +65,10 @@ def get_filtered_data(data, filtervars, vars = ["Year", "Population", "Language"
 with st.form("my_form"):
     st.markdown("Filter by:")
     
-    st.multiselect("Number of Items", lengthitems, default=["All"], key="LENGTHITEMS")
     st.multiselect("Langauge", language, default=["All"], key="LANGUAGE")
     st.multiselect("Country of study", countries, default=["All"], key="COUNTRY")
     st.multiselect("Year of publication", years, default=["All"], key="YEAR")
+    st.multiselect("Online", online, default=["All"], key="ONLINE")
     st.multiselect("Validated?", validated, default=["All"], key="VALIDATED")
     st.multiselect("Objective?", objective, default=["All"], key="OBJECTIVE")
     st.multiselect("Specific?", specific, default=["All"], key="SPECIFIC")
@@ -78,7 +78,7 @@ with st.form("my_form"):
 if "last_filters" not in st.session_state:
     st.session_state.last_filters = []
 
-st.session_state.filters = [st.session_state.YEAR , st.session_state.LENGTHITEMS, st.session_state.LANGUAGE, st.session_state.COUNTRY,
+st.session_state.filters = [st.session_state.LANGUAGE , st.session_state.COUNTRY, st.session_state.YEAR, st.session_state.ONLINE,
                             st.session_state.VALIDATED, st.session_state.OBJECTIVE, st.session_state.SPECIFIC]
 
 st.session_state.changed = st.session_state.filters != st.session_state.last_filters
@@ -96,8 +96,8 @@ if st.session_state.changed:
         #for MeasureName in pd.unique(df.MeasureName):
         #    i += 1
         #    st.markdown(f"{i}. ({str(df[df.MeasureName==MeasureName].Year.iloc[0])}) {df[df.MeasureName==MeasureName].MeasureName.iloc[0]}. Link to Paper: {df[df.MeasureName==MeasureName].LinkPaper.iloc[0]}. Link to Measure: {df[df.MeasureName==MeasureName].LinkMeasure.iloc[0]}") 
-        st.dataframe(df[["MeasureName", "MeasureAbbreviation",  "MeasureDetails", "Reference", "Year",  "LinkPaper", "LinkMeasure",
-                         "Online", "LongTermMalleability",
+        st.dataframe(df[["MeasureName", "MeasureAbbreviation",  "MeasureDetails", "Reference", "Year",  "LinkPaper", "LinkMeasure","LengthItems",
+                         "LongTermMalleability",
                 "ShortTermMalleability", "Skill","AttitudesNormsBeliefs", "Knowledge", "BehavioralCorrelate","IdentityRiskFactor","StimuliType",
                 "StimuliOrigin","StimuliSource", "StimuliCharacteristics", "StimuliPlatform", "ResponseOption", "ComponentType", "BehaviorType", "RiskType"]
                          ])
