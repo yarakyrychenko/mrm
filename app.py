@@ -18,6 +18,7 @@ countries = list(data.Population.unique())
 countries.sort(reverse=True)
 countries.insert(0, "All")
 
+data.Language = data.Year.str
 years = list(data.Year.unique())
 years.sort(reverse=True)
 years.insert(0, "All")
