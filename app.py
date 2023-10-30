@@ -86,8 +86,10 @@ if st.session_state.changed:
         st.markdown("There are no measures matching your selection criteria.")
     else:
         st.markdown(f"There are {len(df.MeasureName)} measures matching your selection criteria.")
-        for i in range(len(df.MeasureName)):
-            print(f"{i}. {df.loc[i,'Year']}. {df.loc[i,'MeasureName']}. Link to Paper: {df.loc[i,'LinkPaper']}. Link to Measure: {df.loc[i,'LinkMeasure']}") 
+        i = 0
+        for MeasureName in pd.unique(df.MeasureName):
+            i += 1
+            print(f"{i}. {df["MeasureName"==MeasureName].Year}. {df["MeasureName"==MeasureName].MeasureName}. Link to Paper: {df["MeasureName"==MeasureName].LinkPaper}. Link to Measure: {df["MeasureName"==MeasureName].LinkMeasure}") 
 
     st.session_state.last_filters = st.session_state.filters
     st.session_state.df = df.reset_index(inplace=False)
