@@ -88,7 +88,7 @@ if st.session_state.changed:
         i = 0
         for MeasureName in pd.unique(df.MeasureName):
             i += 1
-            st.markdown(f"{i}. {str(df[df.MeasureName==MeasureName].Year.iloc[0])}. {df[df.MeasureName==MeasureName].MeasureName}. Link to Paper: {df[df.MeasureName==MeasureName].LinkPaper}. Link to Measure: {df[df.MeasureName==MeasureName].LinkMeasure}") 
+            st.markdown(f"{i}. ({str(df[df.MeasureName==MeasureName].Year.iloc[0])}) {df[df.MeasureName==MeasureName].MeasureName.iloc[0]}. Link to Paper: {df[df.MeasureName==MeasureName].LinkPaper.iloc[0]}. Link to Measure: {df[df.MeasureName==MeasureName].LinkMeasure.iloc[0]}") 
 
     st.session_state.last_filters = st.session_state.filters
     st.session_state.df = df.reset_index(inplace=False)
