@@ -89,7 +89,7 @@ if st.session_state.changed:
         i = 0
         for MeasureName in pd.unique(df.MeasureName):
             i += 1
-            print(f"{i}. {df["MeasureName"==MeasureName].Year}. {df["MeasureName"==MeasureName].MeasureName}. Link to Paper: {df["MeasureName"==MeasureName].LinkPaper}. Link to Measure: {df["MeasureName"==MeasureName].LinkMeasure}") 
+            print(f"{i}. {df[df.MeasureName==MeasureName].Year}. {df[df.MeasureName==MeasureName].MeasureName}. Link to Paper: {df[df.MeasureName==MeasureName].LinkPaper}. Link to Measure: {df[df.MeasureName==MeasureName].LinkMeasure}") 
 
     st.session_state.last_filters = st.session_state.filters
     st.session_state.df = df.reset_index(inplace=False)
