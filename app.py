@@ -96,10 +96,11 @@ if st.session_state.changed:
         #for MeasureName in pd.unique(df.MeasureName):
         #    i += 1
         #    st.markdown(f"{i}. ({str(df[df.MeasureName==MeasureName].Year.iloc[0])}) {df[df.MeasureName==MeasureName].MeasureName.iloc[0]}. Link to Paper: {df[df.MeasureName==MeasureName].LinkPaper.iloc[0]}. Link to Measure: {df[df.MeasureName==MeasureName].LinkMeasure.iloc[0]}") 
-        st.dataframe(df[["MeasureName", "MeasureAbbreviation",  "MeasureDetails", "Reference", "Year",  "LinkPaper", "LinkMeasure","LengthItems",
-                         "LongTermMalleability",
-                "ShortTermMalleability", "Skill","AttitudesNormsBeliefs", "Knowledge", "BehavioralCorrelate","IdentityRiskFactor","StimuliType",
-                "StimuliOrigin","StimuliSource", "StimuliCharacteristics", "StimuliPlatform", "ResponseOption", "ComponentType", "BehaviorType", "RiskType"]
+        st.dataframe(df[["MeasureName", "MeasureAbbreviation",  "MeasureDetails", 
+                         "Reference", "Year",  "LinkPaper", "LinkMeasure", "Language","Population", "Online",
+                         "Validated" , "Objective", "Specific", "LengthItems",
+                         "LongTermMalleability", "ShortTermMalleability", "Skill","AttitudesNormsBeliefs", "Knowledge", "BehavioralCorrelate","IdentityRiskFactor","StimuliType",
+                         "StimuliOrigin","StimuliSource", "StimuliCharacteristics", "StimuliPlatform", "ResponseOption", "ComponentType", "BehaviorType", "RiskType"]
                          ])
            
     st.session_state.last_filters = st.session_state.filters
